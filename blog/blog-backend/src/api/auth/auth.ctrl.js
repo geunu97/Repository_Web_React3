@@ -8,10 +8,14 @@ import User from '../../models/user';
     password: 'mypass123'
   }
 */
-export const register = async (ctx) => {
+export const register = async ctx => {
   // Request Body 검증하기
   const schema = Joi.object().keys({
-    username: Joi.string().alphanum().min(3).max(20).required(),
+    username: Joi.string()
+      .alphanum()
+      .min(3)
+      .max(20)
+      .required(),
     password: Joi.string().required(),
   });
   const result = Joi.validate(ctx.request.body, schema);
@@ -55,7 +59,7 @@ export const register = async (ctx) => {
     password: 'mypass123'
   }
 */
-export const login = async (ctx) => {
+export const login = async ctx => {
   const { username, password } = ctx.request.body;
 
   // username, password 가 없으면 에러 처리
@@ -91,7 +95,7 @@ export const login = async (ctx) => {
 /*
   GET /api/auth/check
 */
-export const check = async (ctx) => {
+export const check = async ctx => {
   const { user } = ctx.state;
   if (!user) {
     // 로그인중 아님
@@ -104,7 +108,7 @@ export const check = async (ctx) => {
 /*
   POST /api/auth/logout
 */
-export const logout = async (ctx) => {
+export const logout = async ctx => {
   ctx.cookies.set('access_token');
   ctx.status = 204; // No Content
 };
