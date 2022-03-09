@@ -30,10 +30,10 @@ const StyledInput = styled.input`
 const Footer = styled.div`
   margin-top: 2rem;
   text-align: right;
-  a{
+  a {
     color: ${palette.gray[6]};
     text-decoration: underline;
-    &:hover{
+    &:hover {
       color: ${palette.gray[9]};
     }
   }
@@ -43,7 +43,7 @@ const ButtonWithMarginTop = styled(Button)`
   margin-top: 1rem;
 `;
 
-const textMap={
+const textMap = {
   login: '로그인',
   register: '회원가입',
 };
@@ -55,7 +55,7 @@ const ErrorMessage = styled.div`
   margin-top: 1rem;
 `;
 
-const AuthForm = ({ type, form, onChange, onSubmit,error }) => {
+const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
   const text = textMap[type];
   return (
     <AuthFormBlock>
@@ -64,35 +64,37 @@ const AuthForm = ({ type, form, onChange, onSubmit,error }) => {
         <StyledInput
           autoComplete="username"
           name="username"
-          placeholder='아이디'
+          placeholder="아이디"
           onChange={onChange}
           value={form.username}
-        />        
+        />
         <StyledInput
-          autoComplete="password"
+          autoComplete="new-password"
           name="password"
-          placeholder='비밀번호'
+          placeholder="비밀번호"
           type="password"
           onChange={onChange}
           value={form.password}
         />
         {type === 'register' && (
           <StyledInput
-            autoComplete='new-password'
+            autoComplete="new-password"
             name="passwordConfirm"
-            placeholder='비밀번호 확인'
+            placeholder="비밀번호 확인"
             type="password"
             onChange={onChange}
             value={form.passwordConfirm}
           />
         )}
         {error && <ErrorMessage>{error}</ErrorMessage>}
-        <ButtonWithMarginTop cyan fullWidth>{text}</ButtonWithMarginTop>
+        <ButtonWithMarginTop cyan fullWidth>
+          {text}
+        </ButtonWithMarginTop>
       </form>
       <Footer>
         {type === 'login' ? (
           <Link to="/register">회원가입</Link>
-        ): (
+        ) : (
           <Link to="/login">로그인</Link>
         )}
       </Footer>
