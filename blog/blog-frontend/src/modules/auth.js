@@ -59,9 +59,10 @@ const initialState = {
 
 const auth = handleActions(
   {
+    //해당 form에 맞는 객체 상태값 업데이트
     [CHANGE_FIELD]: (state, { payload: { form, key, value } }) =>
       produce(state, (draft) => {
-        draft[form][key] = value;
+        draft[form][key] = value; // ex) 상태값 state.register.username을 바꾼다
       }),
     [INITIALIZE_FORM]: (state, { payload: form }) => ({
       ...state,

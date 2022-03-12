@@ -3,8 +3,10 @@ import { takeLatest, call } from 'redux-saga/effects';
 import * as authAPI from '../lib/api/auth';
 import createRequestSaga from '../lib/createRequestSaga';
 
+//새로고침 이후 임시 로그인 처리
 const TEMP_SET_USER = 'user/TEMP_SET_USER';
 
+//회원 정보 확인
 const CHECK = 'user/CHECK';
 const CHECK_SUCCESS = 'user/CHECK_SUCCESS';
 const CHECK_FAILURE = 'user/CHECK_FAILURE';
@@ -27,8 +29,8 @@ function checkFailureSaga() {
 
 function* logoutSaga() {
   try {
-    yield call(authAPI.logout);
-    localStorage.removeItem('user');
+    yield call(authAPI.logout); //logout API 호출
+    localStorage.removeItem('user'); //localStorage에서 user 제거
   } catch (e) {
     console.log(e);
   }
@@ -36,7 +38,7 @@ function* logoutSaga() {
 
 export function* userSaga() {
   yield takeLatest(CHECK, checkSaga);
-  yield takeLatest(CHECK_FAILURE, checkFailureSaga);
+  yield takeLatest(CHECK_FAILURE, checkFailureSaga); //CHECK_FAILURE 액션 발생시 위의 checkFailureSaga함수 호출
   yield takeLatest(LOGOUT, logoutSaga);
 }
 
