@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
   user,
 });
 
-export function* rootSaga(){
+export function* rootSaga() {
   yield all([authSaga(), userSaga()]);
 }
 

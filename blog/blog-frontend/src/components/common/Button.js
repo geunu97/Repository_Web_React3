@@ -36,10 +36,12 @@ const buttonStyle = css`
     `}
 `;
 
+//일반 버튼
 const StyledButton = styled.button`
   ${buttonStyle}
 `;
 
+//링크가 있는 버튼
 const StyledLink = styled(Link)`
   ${buttonStyle}
 `;
