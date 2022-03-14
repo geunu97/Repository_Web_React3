@@ -1,5 +1,4 @@
-/*
-import React, { useEffect, useCallback } from 'react';
+import { useEffect, useCallback } from 'react';
 import Editor from '../../components/write/Editor';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeField, initialize } from '../../modules/write';
@@ -24,4 +23,3 @@ const EditorContainer = () => {
 };
 
 export default EditorContainer;
-*/
