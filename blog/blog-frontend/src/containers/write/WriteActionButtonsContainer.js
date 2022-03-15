@@ -1,5 +1,4 @@
-/*
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import WriteActionButtons from '../../components/write/WriteActionButtons';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -26,7 +25,7 @@ const WriteActionButtonsContainer = ({ history }) => {
     );
   };
 
-  // 취소
+  // 취소 버튼 눌렀을 때 뒤로 가기
   const onCancel = () => {
     history.goBack();
   };
@@ -41,8 +40,8 @@ const WriteActionButtonsContainer = ({ history }) => {
       console.log(postError);
     }
   }, [history, post, postError]);
+
   return <WriteActionButtons onPublish={onPublish} onCancel={onCancel} />;
 };
 
 export default withRouter(WriteActionButtonsContainer);
-*/
