@@ -10,7 +10,7 @@
 
 - 스타일링 styled-components
 
-- API (axios)
+- API (axios, REST API)
 
 - SPA
 
