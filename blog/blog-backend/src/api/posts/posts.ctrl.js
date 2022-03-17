@@ -1,7 +1,7 @@
 import Post from '../../models/post';
 import mongoose from 'mongoose';
-import Joi from 'joi';
 import sanitizeHtml from 'sanitize-html';
+import Joi from '@hapi/joi';
 
 const { ObjectId } = mongoose.Types;
 
@@ -66,7 +66,6 @@ export const checkOwnPost = (ctx, next) => {
     tags: ['태그1', '태그2']
   }
 */
-
 export const write = async (ctx) => {
   const schema = Joi.object().keys({
     // 객체가 다음 필드를 가지고 있음을 검증
@@ -76,7 +75,7 @@ export const write = async (ctx) => {
   });
 
   // 검증 후, 검증 실패시 에러처리
-  const result = Joi.validate(ctx.request.body, schema);
+  const result = schema.validate(ctx.request.body);
   if (result.error) {
     ctx.status = 400; // Bad Request
     ctx.body = result.error;
@@ -182,15 +181,15 @@ export const update = async (ctx) => {
   });
 
   // 검증 후, 검증 실패시 에러처리
-  const result = Joi.validate(ctx.request.body, schema);
+  const result = schema.validate(ctx.request.body);
   if (result.error) {
     ctx.status = 400; // Bad Request
     ctx.body = result.error;
     return;
   }
 
-  const nextData = { ...ctx.request.body }; //객체를 복사하고
-  //body 값이 주어졌으면 HTML 필터링
+  const nextData = { ...ctx.request.body }; // 객체를 복사하고
+  // body 값이 주어졌으면 HTML 필터링
   if (nextData.body) {
     nextData.body = sanitizeHtml(nextData.body, sanitizeOption);
   }

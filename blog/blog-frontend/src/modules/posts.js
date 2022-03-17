@@ -13,7 +13,6 @@ export const listPosts = createAction(
 );
 
 const listPostsSaga = createRequestSaga(LIST_POSTS, postsAPI.listPosts);
-
 export function* postsSaga() {
   yield takeLatest(LIST_POSTS, listPostsSaga);
 }
@@ -29,7 +28,7 @@ const posts = handleActions(
     [LIST_POSTS_SUCCESS]: (state, { payload: posts, meta: response }) => ({
       ...state,
       posts,
-      lastPage: parseInt(response.headers['last-page'], 10), //문자열을 숫자로 변환
+      lastPage: parseInt(response.headers['last-page'], 10), // 문자열을 숫자로 변환
     }),
     [LIST_POSTS_FAILURE]: (state, { payload: error }) => ({
       ...state,
