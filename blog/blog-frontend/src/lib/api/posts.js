@@ -17,3 +17,11 @@ export const listPosts = ({ page, username, tag }) => {
   });
   return client.get(`/api/posts?${queryString}`); //쿼리 스트링 형태 //예시) api/posts?username=tester&page=2
 };
+
+//게시물 수정
+export const updatePost = ({ id, title, body, tags }) =>
+  client.patch(`/api/posts/${id}`, {
+    title,
+    body,
+    tags,
+  });
