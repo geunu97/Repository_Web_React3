@@ -25,3 +25,6 @@ export const updatePost = ({ id, title, body, tags }) =>
     body,
     tags,
   });
+
+//게시물 삭제
+export const removePost = (id) => client.delete(`/api/posts/${id}`);
